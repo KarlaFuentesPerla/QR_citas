@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import DashboardClient from './dashboard-client'
+import DashboardClient, { type Profile } from './dashboard-client'
 import type { User } from '@supabase/supabase-js'
 
 export default function DashboardWrapper() {
   const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
-  const [profile, setProfile] = useState<any>(null)
+  const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

@@ -1401,14 +1401,22 @@ function CreateAppointmentForm({
       // Verificación adicional en el servidor (por si hay cambios desde que se cargaron)
       const { data: existing } = await supabase
         .from('appointments')
-        .select('id, users:user_id(full_name, email)')
+        .select(`
+          id,
+          users:user_id (
+            full_name,
+            email
+          )
+        `)
         .eq('date', selectedDate)
         .eq('time', time)
         .neq('status', 'cancelada')
         .maybeSingle()
 
       if (existing) {
-        const patientName = existing.users?.full_name || existing.users?.email || 'otro paciente'
+        // Manejar el caso donde users puede ser un objeto o un array
+        const userData = Array.isArray(existing.users) ? existing.users[0] : existing.users
+        const patientName = userData?.full_name || userData?.email || 'otro paciente'
         setError(`Este horario ya está ocupado por ${patientName}. Por favor, selecciona otro.`)
         setLoading(false)
         // Actualizar la lista de horarios ocupados

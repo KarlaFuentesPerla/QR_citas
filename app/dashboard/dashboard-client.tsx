@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import { formatDate, generateUniqueCode } from '@/lib/utils'
 
-interface Profile {
+export interface Profile {
   id: string
   full_name: string | null
   phone: string | null
