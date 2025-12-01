@@ -103,5 +103,4 @@ Consulta la documentación en `docs/` para soluciones a problemas comunes:
 
 ## 📄 Licencia
 
-Este proyecto es de código abierto y está disponible para uso personal y comercial.
-
+Este proyecto es de código abierto y está disponible para uso personal y comercial
